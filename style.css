@@ -1,0 +1,262 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:     #0f0f0f;
+  --bg2:    #141414;
+  --card:   #1a1a1a;
+  --border: #2a2a2a;
+  --text:   #e8e8e8;
+  --muted:  #777;
+  --dim:    #444;
+  --accent: #c8b89a;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 5rem 1.5rem;
+  font-weight: 300;
+}
+
+.container {
+  width: 100%;
+  max-width: 540px;
+}
+
+/* ── Header ── */
+header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 2.5rem;
+}
+
+h1 {
+  font-family: 'Fraunces', serif;
+  font-size: 2.8rem;
+  font-weight: 300;
+  font-style: italic;
+  letter-spacing: -0.03em;
+  color: var(--text);
+}
+
+.task-count {
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* ── Form ── */
+#taskForm {
+  display: flex;
+  gap: 0;
+  margin-bottom: 1.5rem;
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  overflow: hidden;
+  transition: border-color 0.2s;
+}
+
+#taskForm:focus-within {
+  border-color: var(--dim);
+}
+
+#taskInput {
+  flex: 1;
+  background: var(--card);
+  border: none;
+  padding: 0.9rem 1.1rem;
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 300;
+  outline: none;
+}
+
+#taskInput::placeholder {
+  color: var(--dim);
+}
+
+#taskForm button {
+  background: var(--card);
+  border: none;
+  border-left: 1px solid var(--border);
+  padding: 0.9rem 1.3rem;
+  color: var(--muted);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: color 0.2s, background 0.2s;
+}
+
+#taskForm button:hover {
+  color: var(--text);
+  background: var(--border);
+}
+
+/* ── Filters ── */
+.filters {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.filter {
+  background: none;
+  border: none;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--dim);
+  cursor: pointer;
+  padding: 0;
+  transition: color 0.2s;
+}
+
+.filter:hover { color: var(--muted); }
+.filter.active { color: var(--text); }
+
+/* ── Task list ── */
+#taskList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.task-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--border);
+  transition: opacity 0.2s;
+}
+
+.task-item:first-child {
+  border-top: 1px solid var(--border);
+}
+
+.task-item.completed {
+  opacity: 0.4;
+}
+
+/* Checkbox */
+.task-check {
+  width: 16px;
+  height: 16px;
+  min-width: 16px;
+  border: 1px solid var(--dim);
+  border-radius: 2px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.task-check:hover {
+  border-color: var(--muted);
+}
+
+.task-item.completed .task-check {
+  background: var(--dim);
+  border-color: var(--dim);
+}
+
+.task-check svg {
+  display: none;
+  width: 10px;
+  height: 10px;
+  stroke: var(--bg);
+  stroke-width: 2.5;
+  fill: none;
+}
+
+.task-item.completed .task-check svg {
+  display: block;
+}
+
+/* Text */
+.task-text {
+  flex: 1;
+  font-size: 0.9rem;
+  font-weight: 300;
+  color: var(--text);
+  line-height: 1.4;
+}
+
+.task-item.completed .task-text {
+  text-decoration: line-through;
+  color: var(--muted);
+}
+
+/* Delete */
+.task-delete {
+  background: none;
+  border: none;
+  color: var(--border);
+  cursor: pointer;
+  font-size: 1rem;
+  line-height: 1;
+  padding: 0 0.2rem;
+  transition: color 0.2s;
+  font-weight: 300;
+}
+
+.task-delete:hover { color: var(--muted); }
+
+/* Empty state */
+.empty {
+  text-align: center;
+  padding: 3rem 0;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--border);
+}
+
+/* ── Footer ── */
+footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1.5rem;
+}
+
+#completedCount {
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--dim);
+}
+
+#clearCompleted {
+  background: none;
+  border: none;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--dim);
+  cursor: pointer;
+  transition: color 0.2s;
+  padding: 0;
+}
+
+#clearCompleted:hover { color: var(--muted); }
