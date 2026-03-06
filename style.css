@@ -32,6 +32,21 @@ body {
   max-width: 540px;
 }
 
+/* ── Back link ── */
+.back-link {
+  position: fixed;
+  top: 1.25rem;
+  left: 1.5rem;
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.back-link:hover { color: var(--text); }
+
 /* ── Header ── */
 header {
   display: flex;
